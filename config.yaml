@@ -1,0 +1,20 @@
+
+input_number:
+  budget_stroom_dal:
+    name: budget stroom dal
+    min: 0
+    max: 10
+    step: 0.00001
+    unit_of_measurement: €/kWh
+  budget_stroom_normaal:
+    name: budget stroom normaal
+    min: 0
+    max: 10
+    step: 0.00001
+    unit_of_measurement: €/kWh
+  budget_gas:
+    name: budget_gas
+    min: 0
+    max: 9999
+    step: 0.00001
+    unit_of_measurement: €/m³
