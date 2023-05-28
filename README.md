@@ -3,6 +3,8 @@ Email parser to send the monthly budget energy prices into home assistant
 
 edit the php files with the right values.
 
+add the yaml to the home assistant configuration.
+
 set the crontab 
 ```
 0 0   1  *   *    /opt/budgetenergie/prices_set.php > /dev/null 2>&1
