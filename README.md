@@ -15,4 +15,4 @@ currently not using all values because i dont need them
 
 note i personally forward the email from gmail to my ziggo account. that is specially made for this interface.
 
-dont open the email if it points to your main directly 
+dont open the email if it points to your mailbox directly 
