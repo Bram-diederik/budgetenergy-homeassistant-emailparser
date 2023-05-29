@@ -1,13 +1,11 @@
 <?php
 // Verbindingsinformatie
 $server = "{imap.ziggo.nl:993/imap/ssl}INBOX";
-$username = "yourhomeassistant@ziggo.nl";
-$password = 'secretpassword';
+$username = "assistant@ziggo.nl";
+$password = 'password';
 $value_folder = "/opt/budgetenergie/values/";
 
 $from_email = "noreply@budgetenergie.nl";
-
-//TVG ja of nee
 $tvg = true;
 
 //end config
@@ -43,20 +41,51 @@ if ($mailbox) {
         $patternNormaaltarief = '/Totaal normaaltarief =E2=82=AC ([0-9,]+) =E2=82=AC ([0-9,]+)/';
         $patternDaltarief = '/Totaal daltarief =E2=82=AC ([0-9,]+) =E2=82=AC ([0-9,]+)/';
         $patternGastarief = '/Totaal =E2=82=AC ([0-9,]+) =E2=82=AC ([0-9,]+)/';
+
+         $htmlpatternNormaaltarief ='/<td style="width:60%;height:24px;vertical-align:bottom;font-weight:bold">Totaal normaaltarief<\/td>
+\s+<td style="width:20%;height:24px;vertical-align:bottom;font-weight:bold">.? ([0-9,])+<\/td>
+\s+<td style="width:20%;height:24px;vertical-align:bottom;text-align:left;font-weight:bold">.? ([0-9,])+<\/td>/';
+
+        $htmlpatternDaltarief = '/<td style="width:60%;height:24px;vertical-align:bottom;font-weight:bold">Totaal normaaltarief<\/td>
+\s+<td style="width:20%;height:24px;vertical-align:bottom;font-weight:bold">.? ([0-9,])+<\/td>
+\s+<td style="width:20%;height:24px;vertical-align:bottom;text-align:left;font-weight:bold">.? ([0-9,])+<\/td>/'; 
+
+
+        $htmlpatternGastarief = '/<td style="width:60%;height:24px;vertical-align:bottom;font-weight:bold">Totaal<\/td>
+\s+<td style="width:20%;height:24px;vertical-align:bottom;font-weight:bold">.? ([0-9,])+<\/td>
+\s+<td style="width:20%;height:24px;vertical-align:bottom;text-align:left;font-weight:bold">.? ([0-9,])+<\/td>/';
+
+
+
         // Match the prices using regular expressions
         if (preg_match($patternNormaaltarief, $body, $matchesNormaaltarief)) {
                 $bNorm = true;
                 $normaaltariefPrice =   str_replace(',', '.',$matchesNormaaltarief[$nTvg]);
                 echo "Stroom normaaltarief:" . $normaaltariefPrice . "\n";
+        } else if (preg_match($htmlpatternNormaaltarief, $body, $matchesNormaaltarief)) {
+                $bNorm = true;
+                $normaaltariefPrice =   str_replace(',', '.',$matchesNormaaltarief[$nTvg]);
+                echo "Stroom normaaltarief:" . $normaaltariefPrice . "\n";
+
+
         }
 
         if (preg_match($patternDaltarief, $body, $matchesDaltarief)) {
                 $bDal = true;
                 $daltariefPrice =  str_replace(',', '.',$matchesDaltarief[$nTvg]);
                 echo "Stroom daltarief:" . $daltariefPrice . "\n";
+        }  else if (preg_match($htmlpatternDaltarief, $body, $matchesDaltarief)) {
+                $bDal = true;
+                $daltariefPrice =  str_replace(',', '.',$matchesDaltarief[$nTvg]);
+                echo "Stroom daltarief:" . $daltariefPrice . "\n";
         }
 
         if (preg_match($patternGastarief, $body, $matchesGastarief)) {
+                $bGas = true;
+                $gastariefPrice =   str_replace(',', '.',$matchesGastarief[$nTvg]);
+                echo "Gas tarief:" . $gastariefPrice ." \n";
+
+       } else if (preg_match($htmlpatternGastarief, $body, $matchesGastarief)) {
                 $bGas = true;
                 $gastariefPrice =   str_replace(',', '.',$matchesGastarief[$nTvg]);
                 echo "Gas tarief:" . $gastariefPrice ." \n";
