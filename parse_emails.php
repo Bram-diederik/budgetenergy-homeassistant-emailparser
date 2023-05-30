@@ -42,18 +42,21 @@ if ($mailbox) {
         $patternDaltarief = '/Totaal daltarief =E2=82=AC ([0-9,]+) =E2=82=AC ([0-9,]+)/';
         $patternGastarief = '/Totaal =E2=82=AC ([0-9,]+) =E2=82=AC ([0-9,]+)/';
 
-         $htmlpatternNormaaltarief ='/<td style="width:60%;height:24px;vertical-align:bottom;font-weight:bold">Totaal normaaltarief<\/td>
-\s+<td style="width:20%;height:24px;vertical-align:bottom;font-weight:bold">.? ([0-9,])+<\/td>
-\s+<td style="width:20%;height:24px;vertical-align:bottom;text-align:left;font-weight:bold">.? ([0-9,])+<\/td>/';
-
-        $htmlpatternDaltarief = '/<td style="width:60%;height:24px;vertical-align:bottom;font-weight:bold">Totaal normaaltarief<\/td>
-\s+<td style="width:20%;height:24px;vertical-align:bottom;font-weight:bold">.? ([0-9,])+<\/td>
-\s+<td style="width:20%;height:24px;vertical-align:bottom;text-align:left;font-weight:bold">.? ([0-9,])+<\/td>/'; 
+         $htmlpatternNormaaltarief ='/<tr style=3D"height: 24px;">
+\s+<td style=3D"width: 60%; height: 24px; vertical-align: bottom; font=-weight: bold;">Totaal normaaltarief<\/td>
+\s+<td style=3D"width: 20%; height: 24px; vertical-align: bottom; font=-weight: bold;">&#8364; ([0-9,]+)<\/td>
+\s+<td style=3D"width: 20%; height: 24px; vertical-align: bottom; =text-align: left; font-weight: bold;">&#8364; ([0-9,]+)<\/td>/';
 
 
-        $htmlpatternGastarief = '/<td style="width:60%;height:24px;vertical-align:bottom;font-weight:bold">Totaal<\/td>
-\s+<td style="width:20%;height:24px;vertical-align:bottom;font-weight:bold">.? ([0-9,])+<\/td>
-\s+<td style="width:20%;height:24px;vertical-align:bottom;text-align:left;font-weight:bold">.? ([0-9,])+<\/td>/';
+        $htmlpatternDaltarief = '/<tr style=3D"height: 24px;">
+\s+<td style=3D"width: 60%; height: 24px; vertical-align: bottom; font=-weight: bold;">Totaal normaaltarief<\/td>
+\s+<td style=3D"width: 20%; height: 24px; vertical-align: bottom; font=-weight: bold;">&#8364; ([0-9,]+)<\/td>
+\s+<td style=3D"width: 20%; height: 24px; vertical-align: bottom; =text-align: left; font-weight: bold;">&#8364; ([0-9,]+)<\/td>/';
+
+        $htmlpatternGastarief = '/<tr style=3D"height: 24px;">
+\s+<td style=3D"width: 60%; height: 24px; vertical-align: bottom; font=-weight: bold;">Totaal<\/td>
+\s+<td style=3D"width: 20%; height: 24px; vertical-align: bottom; font=-weight: bold;">&#8364; ([0-9,]+)<\/td>
+\s+<td style=3D"width: 20%; height: 24px; vertical-align: bottom; =text-align: left; font-weight: bold;">&#8364; ([0-9,]+)<\/td>/';
 
 
 
