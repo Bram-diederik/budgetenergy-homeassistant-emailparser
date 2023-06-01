@@ -1,10 +1,7 @@
 #!/usr/bin/php
 <?php
+include("/opt/budgetenergie/common.php");
 
-$sHomeApiUrl = "https://homeassistant";
-$sHomeApiKey = "apikey";
-
-$value_dir = "/opt/budgetenergie/values/";
 function HA_set($sSensorName,$sValue) {
 
 global $sHomeApiUrl;
@@ -38,9 +35,36 @@ curl_close($ch);
 echo "$result \nSensor ".$sSensorName." set to ".$sValue.".\n";
 }
 
-HA_set("input_number.budget_stroom_dal",file_get_contents($value_dir."Stroom_dalltarief"));
-HA_set("input_number.budget_stroom_normaal",file_get_contents($value_dir."Stroom_normaaltarief"));
-HA_set("input_number.budget_gas",file_get_contents($value_dir."gastarief"));
+// Nederlandse maandnamen
+$maandnamen = [
+    1 => 'januari',
+    2 => 'februari',
+    3 => 'maart',
+    4 => 'april',
+    5 => 'mei',
+    6 => 'juni',
+    7 => 'juli',
+    8 => 'augustus',
+    9 => 'september',
+    10 => 'oktober',
+    11 => 'november',
+    12 => 'december'
+];
+
+// Huidige maand en jaar ophalen
+$huidigeMaand = date('n');
+$huidigJaar = date('Y');
+
+// Nederlandse maandnaam bepalen
+$nederlandseMaand = $maandnamen[$huidigeMaand];
+
+// Maand en jaar aan elkaar schrijven
+$datum = $nederlandseMaand . $huidigJaar;
+
+
+HA_set("input_number.budget_stroom_dal",file_get_contents($value_folder."$datum-Stroom_dalltarief"));
+HA_set("input_number.budget_stroom_normaal",file_get_contents($value_folder."$datum-Stroom_normaaltarief"));
+HA_set("input_number.budget_gas",file_get_contents($value_folder."$datum-gastarief"));
 
 
 ?>
