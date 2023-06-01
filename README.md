@@ -1,9 +1,9 @@
 # budgetenergy-homeassistant-emailparser
 Email parser to send the monthly budget energy prices into home assistant
 
-edit the php files with the right values.
+edit the common.php file with the right values and point it to the right location. 
 
-add the yaml to the home assistant configuration.
+add the yaml to the home assistant configuration.yaml
 
 set the crontab 
 ```
@@ -13,6 +13,5 @@ set the crontab
 
 currently not using all values because i dont need them
 
-note i personally forward the email from gmail to my ziggo account. that is specially made for this interface.
-
-dont open the email if it points to your mailbox directly 
+note i personally forward the email from gmail to my ziggo account. converting the html email to text.
+I dont test the html email content.
