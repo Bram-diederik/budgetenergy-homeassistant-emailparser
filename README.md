@@ -1,6 +1,8 @@
 # budgetenergy-homeassistant-emailparser
 Email parser to send the monthly budget energy prices into home assistant
 
+note for now you need to run it on a seperate linux machine.
+
 edit the common.php file with the right values and point it to the right location. 
 
 add the yaml to the home assistant configuration.yaml
